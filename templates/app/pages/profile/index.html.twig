@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('front_home') }}
+    {{ encore_entry_link_tags('app_pages_profile') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('front_home') }}
+    {{ encore_entry_script_tags('app_pages_profile') }}
 {% endblock %}
 
 {% block body %}
     {% include 'common/components/_navbar.html.twig' %}
 
     <div>
-        <h1>Home page</h1>
+        <h1>Profile page</h1>
     </div>
 
     {% include 'common/components/_footer.html.twig' %}

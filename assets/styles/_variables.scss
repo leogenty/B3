@@ -1,5 +1,3 @@
-// Color system
-
 // scss-docs-start gray-color-variables
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
@@ -29,6 +27,10 @@ $grays: (
 ) !default;
 // scss-docs-end gray-colors-map
 // fusv-enable
+
+// scss-docs-start colors-map
+$colors: () !default;
+// scss-docs-end colors-map
 
 // scss-docs-start color-variables
 $blue:    #0d6efd !default;
