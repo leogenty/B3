@@ -25,6 +25,7 @@ Encore
     .addEntry('app_pages_class', './assets/javascripts/app/pages/class/index.js')
     .addEntry('app_pages_profile', './assets/javascripts/app/pages/profile/index.js')
     .addEntry('app_register', './assets/javascripts/security/pages/register/index.js')
+    .addEntry('app_login', './assets/javascripts/security/pages/login/index.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')
