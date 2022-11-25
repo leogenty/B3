@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LessonsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +28,14 @@ class Lessons
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Matter $Matter = null;
+
+    #[ORM\OneToMany(mappedBy: 'LessonSection', targetEntity: LessonSection::class)]
+    private Collection $lessonSections;
+
+    public function __construct()
+    {
+        $this->lessonSections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +86,36 @@ class Lessons
     public function setMatter(?Matter $Matter): self
     {
         $this->Matter = $Matter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LessonSection>
+     */
+    public function getLessonSections(): Collection
+    {
+        return $this->lessonSections;
+    }
+
+    public function addLessonSection(LessonSection $lessonSection): self
+    {
+        if (!$this->lessonSections->contains($lessonSection)) {
+            $this->lessonSections->add($lessonSection);
+            $lessonSection->setLessonSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLessonSection(LessonSection $lessonSection): self
+    {
+        if ($this->lessonSections->removeElement($lessonSection)) {
+            // set the owning side to null (unless already changed)
+            if ($lessonSection->getLessonSection() === $this) {
+                $lessonSection->setLessonSection(null);
+            }
+        }
 
         return $this;
     }
