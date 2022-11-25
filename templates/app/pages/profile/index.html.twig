@@ -1,21 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app_pages_profile') }}
+    {{ encore_entry_link_tags('app_login') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app_pages_profile') }}
+    {{ encore_entry_script_tags('app_login') }}
 {% endblock %}
 
+{% block title %}My Learning{% endblock %}
+
+
+
+
 {% block body %}
-    {% include 'common/components/_navbar.html.twig' %}
+    <h1>Mon compte</h1>
+    Bienvenue <strong>{{app.user.firstname }}</strong>, ici nous sommes dans la page compte, c'est ici que vous allez pouvoir administrer vos données...<br>
 
-    <div>
-        <h1>Profile page</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="account-item">
+                <a class="btn btn-success" href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+            </div>
+        </div>
     </div>
-
-    {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
