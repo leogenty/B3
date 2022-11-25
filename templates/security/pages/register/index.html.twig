@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app_register') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app_register') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary">Inscription</h1>
+
+
+    formulaire d'Inscription
+    {{ form(form) }}
+{% endblock %}
