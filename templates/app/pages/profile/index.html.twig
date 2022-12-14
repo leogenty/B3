@@ -14,17 +14,60 @@
 
 
 
-{% block body %}
-    <h1>Mon compte</h1>
-    Bienvenue <strong>{{app.user.firstname }}</strong>, ici nous sommes dans la page compte, c'est ici que vous allez pouvoir administrer vos données...<br>
+    {% block body %}
+    <h1>Paramètres Utilisateur</h1>
+        <div class="mt-5">
+        {% if is_granted('ROLE_ADMIN') %}
+        <hr>
+        <h2>Vous êtes Administrateur</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="{{ path('admin') }}">Accéder à l'interface d'administration</a>
+                </div>
+            </div>
 
-    <hr>
+        {% elseif is_granted('ROLE_PROF') %}
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="account-item">
-                <a class="btn btn-success" href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+        <h2>Vous êtes Professeur</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="">Accéder à l'interface des prof</a>
+                </div>
+            </div>
+
+        {% elseif is_granted('ROLE_ELEVE') %}
+
+        <h2>Vous êtes Eleve</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="">Accéder à l'interface des élèves</a>
+                </div>
+            </div>
+
+        {% endif %}
+        <hr>
+
+        <div>
+            <h2>Détails de votre compte</h2>
+            Prénom : <strong>{{ app.user.firstname }}</strong> <br>
+            Nom : <strong>{{ app.user.lastname }}</strong> <br>
+            Adresse mail : <strong>{{ app.user.email }}</strong>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="account-item">
+                    <a class="btn btn-success" href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+                </div>
             </div>
         </div>
     </div>
+    <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="account-item">
+                    <a class="btn btn-success" href="{{ path('front_home') }}">Revenir à l'accueil</a>
+                </div>
+            </div>
+        </div>
 {% endblock %}
