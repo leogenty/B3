@@ -27,7 +27,7 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('firstname'),
             ArrayField::new('roles'),
-            AssociationField::new('Groupe')
+            AssociationField::new('groups')
         ];
     }
 
