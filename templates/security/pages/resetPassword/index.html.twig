@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app_register') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app_register') }}
+{% endblock %}
+
+{% block title %}Modifier Le Mot De Passe{% endblock %}
+
+{% block body %}
+    {% if notification %}
+        <div class="alert alert-info">{{ notification }}</div>
+    {% endif %}
+    <h1>Modifier Le Mot De Passe</h1>
+    {{ form(form) }}
+    <a href="{{ path('app_pages_profile') }}">Retourner à mon compte</a>
+{% endblock %}

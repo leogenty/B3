@@ -1,21 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app_pages_profile') }}
+    {{ encore_entry_link_tags('app_login') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app_pages_profile') }}
+    {{ encore_entry_script_tags('app_login') }}
 {% endblock %}
 
-{% block body %}
-    {% include 'common/components/_navbar.html.twig' %}
+{% block title %}My Learning{% endblock %}
 
-    <div>
-        <h1>Profile page</h1>
+
+
+
+    {% block body %}
+    <h1>Paramètres Utilisateur</h1>
+        <div class="mt-5">
+        {% if is_granted('ROLE_ADMIN') %}
+        <hr>
+        <h2>Vous êtes Administrateur</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="{{ path('admin') }}">Accéder à l'interface d'administration</a>
+                </div>
+            </div>
+
+        {% elseif is_granted('ROLE_PROF') %}
+
+        <h2>Vous êtes Professeur</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="">Accéder à l'interface des prof</a>
+                </div>
+            </div>
+
+        {% elseif is_granted('ROLE_ELEVE') %}
+
+        <h2>Vous êtes Eleve</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="">Accéder à l'interface des élèves</a>
+                </div>
+            </div>
+
+        {% endif %}
+        <hr>
+
+        <div>
+            <h2>Détails de votre compte</h2>
+            Prénom : <strong>{{ app.user.firstname }}</strong> <br>
+            Nom : <strong>{{ app.user.lastname }}</strong> <br>
+            Adresse mail : <strong>{{ app.user.email }}</strong>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="account-item">
+                    <a class="btn btn-success" href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    {% include 'common/components/_footer.html.twig' %}
+    <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="account-item">
+                    <a class="btn btn-success" href="{{ path('front_home') }}">Revenir à l'accueil</a>
+                </div>
+            </div>
+        </div>
 {% endblock %}
