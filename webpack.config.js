@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('front_home', './assets/javascripts/front/pages/home/index.js')
+    .addEntry('front_matter', './assets/javascripts/front/pages/matter/index.js')
 
     .addEntry('app_pages_class', './assets/javascripts/app/pages/class/index.js')
     .addEntry('app_pages_profile', './assets/javascripts/app/pages/profile/index.js')
