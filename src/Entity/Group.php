@@ -19,15 +19,15 @@ class Group
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'groups')]
-    private ?user $eleve = null;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'groups')]
+    private Collection $user;
 
-    #[ORM\OneToMany(mappedBy: 'Groupe', targetEntity: User::class)]
-    private Collection $users;
+    #[ORM\Column(length: 255)]
+    private ?string $Ecole = null;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function __toString()
@@ -52,31 +52,18 @@ class Group
         return $this;
     }
 
-    public function getEleve(): ?user
-    {
-        return $this->eleve;
-    }
-
-    public function setEleve(?user $eleve): self
-    {
-        $this->eleve = $eleve;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, User>
      */
-    public function getUsers(): Collection
+    public function getUser(): Collection
     {
-        return $this->users;
+        return $this->user;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setGroupe($this);
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
         }
 
         return $this;
@@ -84,12 +71,19 @@ class Group
 
     public function removeUser(User $user): self
     {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getGroupe() === $this) {
-                $user->setGroupe(null);
-            }
-        }
+        $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    public function getEcole(): ?string
+    {
+        return $this->Ecole;
+    }
+
+    public function setEcole(string $Ecole): self
+    {
+        $this->Ecole = $Ecole;
 
         return $this;
     }

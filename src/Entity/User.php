@@ -35,15 +35,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Group::class)]
+    #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'user')]
     private Collection $groups;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Group $Groupe = null;
 
     public function __construct()
     {
         $this->groups = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->firstname . " " . $this->lastname;
     }
 
     public function getId(): ?int
@@ -152,7 +155,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->groups->contains($group)) {
             $this->groups->add($group);
-            $group->setEleve($this);
+            $group->addUser($this);
         }
 
         return $this;
@@ -161,23 +164,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeGroup(Group $group): self
     {
         if ($this->groups->removeElement($group)) {
-            // set the owning side to null (unless already changed)
-            if ($group->getEleve() === $this) {
-                $group->setEleve(null);
-            }
+            $group->removeUser($this);
         }
-
-        return $this;
-    }
-
-    public function getGroupe(): ?Group
-    {
-        return $this->Groupe;
-    }
-
-    public function setGroupe(?Group $Groupe): self
-    {
-        $this->Groupe = $Groupe;
 
         return $this;
     }

@@ -28,6 +28,7 @@ Encore
     .addEntry('app_register', './assets/javascripts/security/pages/register/index.js')
     .addEntry('app_login', './assets/javascripts/security/pages/login/index.js')
     .addEntry('app_account_password', './assets/javascripts/security/pages/resetPassword/index.js')
+    .addEntry('app_groupe_creator', './assets/javascripts/pro/pages/group/index.js')
 
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
