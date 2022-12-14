@@ -13,9 +13,23 @@
 {% block body %}
     {% include 'common/components/_navbar.html.twig' %}
 
-    <div>
-        <h1>Class page</h1>
-    </div>
+    <h1>Class page</h1>
+
+    {% for lesson in lessons %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+                <div class="card text-bg-light mb-3">
+                    <div class="card-header">
+                        <h4 class="card-title text-primary me-auto">{{ lesson.titre }}</h4>
+                    </div>
+                    <div class="card-body">
+                        Description : {{ lesson.desciption }}<br>
+                        <div class="text-center mt-3"><a class="btn btn-lg btn-warning text-white" href="">Accéder au cours</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
     {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
