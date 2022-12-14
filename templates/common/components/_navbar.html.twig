@@ -13,7 +13,7 @@
                     <a class="nav-link {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" href="{{ path('front_matter') }}">Matière</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if app.request.get('_route') == 'app_pages_class' %}active{% endif %}" href="{{ path('app_pages_class') }}">Cours</a>
+                    <a class="nav-link {% if app.request.get('_route') == 'app_pages_class' %}active{% endif %}" href="{{ path('app_pages_class', {'matter' : 'redirect'}) }}">Cours</a>
                 </li>
             </ul>
         </div>

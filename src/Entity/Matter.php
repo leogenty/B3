@@ -30,6 +30,12 @@ class Matter
         $this->lessons = new ArrayCollection();
     }
 
+    // add this function manually to render string in Admin Dashboard
+    public function __toString()
+    {
+        return $this->Title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

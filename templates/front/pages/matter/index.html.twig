@@ -13,13 +13,18 @@
 {% block body %}
     {% include 'common/components/_navbar.html.twig' %}
 
-    <div>
-        <h1>Matter page</h1>
-        {% for matter in matters %}
-            Titre : {{ matter.title }}<br>
-            Description : {{ matter.description }}<br>
-            {# Leçons : {{ matter.lessons }} #}
-        {% endfor %}
+    <h1>Matter page</h1>
+
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+    {% for matter in matters %}
+        <a type="button" class="btn btn-lg btn-outline-primary" href="{{ path('app_pages_class', {'matter' : matter.title}) }}">{{ matter.title }}</a>
+    {% endfor %}
     </div>
 
     {% include 'common/components/_footer.html.twig' %}
