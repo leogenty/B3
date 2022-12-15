@@ -11,6 +11,8 @@
 {% block title %}My Learning{% endblock %}
 
 {% block body %}
+    {% include 'common/components/_navbar.html.twig' %}
+
     <h1>Paramètres Utilisateur</h1>
         <div class="mt-5">
         {% if is_granted('ROLE_ADMIN') %}
@@ -73,4 +75,6 @@
                 </div>
             </div>
         </div>
+
+    {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
