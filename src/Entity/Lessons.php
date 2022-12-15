@@ -37,6 +37,11 @@ class Lessons
         $this->lessonSections = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->Titre;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

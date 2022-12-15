@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('front_home') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('front_home') }}
+{% endblock %}
+
+{% block body %}
+    {% include 'common/components/_navbar.html.twig' %}
+
+    {% for lessons in lessonSection %}
+
+    {% if  %}
+
+        <h3> {{ lessons.lessonSection.titre }}</h3>
+        <br>
+        <p>
+        {{ lessons.textcontent }}
+        </p>
+    {% endfor %}
+
+
+    {% include 'common/components/_footer.html.twig' %}
+{% endblock %}

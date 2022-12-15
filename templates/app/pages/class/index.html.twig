@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         Description : {{ lesson.desciption }}<br>
-                        <div class="text-center mt-3"><a class="btn btn-lg btn-warning text-white" href="">Accéder au cours</a></div>
+                        <div class="text-center mt-3"><a class="btn btn-lg btn-warning text-white" href="{{ path('app_lesson_section', {'lessonSection' : lesson.titre}) }}">Accéder au cours</a></div>
                     </div>
                 </div>
             </div>
