@@ -11,39 +11,43 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'common/components/_navbar.html.twig' %}
-
     <h1>Class page</h1>
 
-    {% for lesson in lessons %}
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-                <div class="card text-bg-light mb-3">
-                    <div class="card-header">
-                        <h4 class="card-title text-primary me-auto">{{ lesson.titre }}</h4>
-                    </div>
-                    <div class="card-body">
-                        Description : {{ lesson.desciption }}<br>
-                        <div class="text-center mt-3"><a class="btn btn-lg btn-warning text-white" href="{{ path('app_lesson_section', {'lessonSection' : lesson.titre}) }}">Accéder au cours</a></div>
-                    </div>
+    <div class="row">
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
+            <div class="col-8">
+        {% else %}
+            <div class="col-12">
+        {% endif%}
+
+        <h3>Liste des cours</h3>
+
+        {% for lesson in lessons %}
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">
+                    <h4 class="card-title text-primary me-auto">{{ lesson.titre }}</h4>
+                </div>
+                <div class="card-body">
+                    Description : {{ lesson.desciption }}<br>
+                    <div class="text-center mt-3"><a class="btn btn-lg btn-warning text-white" href="{{ path('app_lesson_section', {'lessonSection' : lesson.titre}) }}">Accéder au cours</a></div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
 
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col-12 col-md-6">
-                {{ form_row(form.titre) }}
-                {{ form_row(form.desciption) }}
-                {{ form_row(form.matter) }}
-                {{ form_row(form.position) }}
+        </div>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
+            <div class="col-4">
+                <h3>Ajouter un cours</h3>
+
+                {{ form_start(form) }}
+                    {{ form_row(form.titre) }}
+                    {{ form_row(form.desciption) }}
+                    {{ form_row(form.matter) }}
+                    {{ form_row(form.position) }}
                 <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
             </div>
         </div>
+    </div>
         {{ form_end(form) }}
     {% endif %}
-
-    {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
