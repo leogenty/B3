@@ -30,8 +30,12 @@ class ClassController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $titre = $form['titre']->getData();
+
                 $managerRegistry->getManager()->persist($lesson);
                 $managerRegistry->getManager()->flush();
+
+                return $this->redirectToRoute('app_lesson_section', ['lessonSection' => $titre]);
             }
 
             return $this->render('app/pages/class/index.html.twig', [
