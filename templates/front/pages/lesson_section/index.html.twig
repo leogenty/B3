@@ -21,10 +21,10 @@
             {% set foo = 1 %}
             {% for lessons in lessonSection %}
 
-                <h3> Partie {{ foo }} : {{ lessons.name }}</h3>
-                <br>
-                <p>{{ lessons.textcontent }}</p>
-                <br>
+                <h3> Partie {{ foo }} : {{ lessons.name }}</h3><br>
+
+                <p>{{ lessons.textcontent }}</p><br>
+
 
             {% set foo = foo + 1 %}
             {% endfor %}
