@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block stylesheets %}
     {{ encore_entry_link_tags('app_login') }}
 {% endblock %}
@@ -11,10 +10,7 @@
 
 {% block title %}My Learning{% endblock %}
 
-
-
-
-    {% block body %}
+{% block body %}
     <h1>Paramètres Utilisateur</h1>
         <div class="mt-5">
         {% if is_granted('ROLE_ADMIN') %}
@@ -51,7 +47,14 @@
             <h2>Détails de votre compte</h2>
             Prénom : <strong>{{ app.user.firstname }}</strong> <br>
             Nom : <strong>{{ app.user.lastname }}</strong> <br>
-            Adresse mail : <strong>{{ app.user.email }}</strong>
+            Adresse mail : <strong>{{ app.user.email }}</strong> <br>
+            Ecole : <strong>{{ app.user }}</strong>
+            <pre>
+                {% for group in app.user.getGroups() %}
+                    {{ group.name }}
+                    {{ group.ecole }}
+                {% endfor %}
+            </pre>
         </div>
 
         <div class="row">
