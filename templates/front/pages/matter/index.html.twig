@@ -11,8 +11,6 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'common/components/_navbar.html.twig' %}
-
     <h1>Matter page</h1>
 
     {% for message in app.flashes('warning') %}
@@ -26,6 +24,4 @@
         <a type="button" class="btn btn-lg btn-outline-primary" href="{{ path('app_pages_class', {'matter' : matter.title}) }}">{{ matter.title }}</a>
     {% endfor %}
     </div>
-
-    {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
