@@ -51,7 +51,9 @@
             <h2>Détails de votre compte</h2>
             Prénom : <strong>{{ app.user.firstname }}</strong> <br>
             Nom : <strong>{{ app.user.lastname }}</strong> <br>
-            Adresse mail : <strong>{{ app.user.email }}</strong>
+            Adresse mail : <strong>{{ app.user.email }}</strong> <br>
+            Ecole : <strong>{{ app.user }}</strong>
+            {{ dump(app.user.groups) }}
         </div>
 
         <div class="row">
