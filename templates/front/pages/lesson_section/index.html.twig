@@ -3,26 +3,41 @@
 {% block title %}Home{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('front_home') }}
+    {{ encore_entry_link_tags('app_lesson_section') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('front_home') }}
+    {{ encore_entry_script_tags('app_lesson_section') }}
 {% endblock %}
 
 {% block body %}
     {% include 'common/components/_navbar.html.twig' %}
+    <div class="row">
+        <div class="col-2">
+            TEST
+        </div>
+        <div class="col-8">
+            <h1 class="mt-5">TITRE DE LA SECTION</h1> <br>
+            <hr>
+            {% set foo = 1 %}
+            {% for lessons in lessonSection %}
 
-    {% for lessons in lessonSection %}
+                <h3> Partie {{ foo }} : {{ lessons.name }}</h3>
+                <br>
+                <p>{{ lessons.textcontent }}</p>
+                <br>
 
+            {% set foo = foo + 1 %}
+            {% endfor %}
+        </div>
+        <div class="col-2">
+            <h5>Liste des parties :</h5>
+            {% for lessons in lessonSection %}
+                <p>{{ lessons.name }}</p>
+            {% endfor %}
+        </div>
 
-        <h3> {{ lessons.lessonSection.titre }}</h3>
-        <br>
-        <p>
-        {{ lessons.textcontent }}
-        </p>
-    {% endfor %}
-
+    </div>
 
     {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
