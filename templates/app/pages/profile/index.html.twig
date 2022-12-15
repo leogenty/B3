@@ -1,18 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app_login') }}
+    {{ encore_entry_link_tags('app_pages_profile') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app_login') }}
+    {{ encore_entry_script_tags('app_pages_profile') }}
 {% endblock %}
 
 {% block title %}My Learning{% endblock %}
 
 {% block body %}
-    {% include 'common/components/_navbar.html.twig' %}
-
     <h1>Paramètres Utilisateur</h1>
         <div class="mt-5">
         {% if is_granted('ROLE_ADMIN') %}
@@ -75,6 +73,4 @@
                 </div>
             </div>
         </div>
-
-    {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
