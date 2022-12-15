@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Lessons;
 use App\Entity\Matter;
+use App\Form\LessonType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,19 @@ class ClassController extends AbstractController
 
             return $this->redirectToRoute('front_matter');
         } else {
+            $matterTitle = $request->get('matter');
+            $lesson = new Lessons();
+
+            $form = $this->createForm(LessonType::class, $lesson, ['matterTitle' => $matterTitle]);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $managerRegistry->getManager()->persist($lesson);
+                $managerRegistry->getManager()->flush();
+            }
+
             return $this->render('app/pages/class/index.html.twig', [
+                'form' => $form->createView(),
                 'lessons' => $managerRegistry->getRepository(Lessons::class)->findBy(['Matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['Title' => $request->get('matter')])]),
             ]);
         }

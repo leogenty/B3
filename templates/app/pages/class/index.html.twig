@@ -31,5 +31,19 @@
         </div>
     {% endfor %}
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {{ form_row(form.titre) }}
+                {{ form_row(form.desciption) }}
+                {{ form_row(form.matter) }}
+                {{ form_row(form.position) }}
+                <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    {% endif %}
+
     {% include 'common/components/_footer.html.twig' %}
 {% endblock %}
